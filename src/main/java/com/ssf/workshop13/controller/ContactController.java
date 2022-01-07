@@ -22,16 +22,20 @@ public class ContactController {
     }
     @PostMapping("/contact")
     public String GenerateContact(@ModelAttribute Contact contact, Model model) {
-        logger.info("From the form, name is: " + contact.getName());
-        logger.info("From the form, phone number is: " + contact.getPhoneNo());
-        logger.info("From the form, email address is: " + contact.getEmailAdd());
-
         String name = contact.getName();
         String phoneNo = contact.getPhoneNo();
         String emailAdd = contact.getEmailAdd();
+
+        logger.info("From the form, name is: " + name);
+        logger.info("From the form, phone number is: " + phoneNo);
+        logger.info("From the form, email address is: " + emailAdd);
+
+
         model.addAttribute("name", name);
         model.addAttribute("phoneNo", phoneNo);
         model.addAttribute("emailAdd", emailAdd);
+
+
 
         return "contact";
     }

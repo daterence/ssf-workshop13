@@ -36,5 +36,7 @@ public class Workshop13Application {
                 System.out.println(path + " already exists");
             }
         }
+
+        app.run(args);
     }
 }
