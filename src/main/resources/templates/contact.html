@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title>Contact Form</title>
 </head>
 <body>
-<h1>Hello</h1>
+    <h1>Your contact information</h1>
     <form action="#" th:action="@{/contact}" th:object="${contact}" method="post">
-        <h4> Name:
-            <label>
-                <input type="text" th:field="*{name}" placeholder="Enter name"/>
-            </label>
-        </h4>
-        <h4> Email Address:
-            <label>
-                <input type="text" th:field="*{emailAdd}" placeholder="abc@gmail.com">
-            </label>
-        </h4>
-        <h4> Phone Number:
-            <label>
-                <input type="text" th:field="*{phoneNo}" placeholder="Enter phone number">
-            </label>
-        </h4>
         <p>
-            <input type="submit" value="Submit">
+            Name:
+            <input type="text" th:field="*{name}">
+        </p>
+        <br>
+        <p>
+            Email:
+            <input type="text" th:field="*{email}">
+        </p>
+        <br>
+        <p>
+            Phone Number:
+            <input type="text" th:field="*{phoneNumber}">
+        </p>
+        <br>
+        <p>
+            <input type="submit" value="Save">
         </p>
     </form>
 </body>

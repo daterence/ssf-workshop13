@@ -1,42 +1,32 @@
 package com.ssf.workshop13;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.Arrays;
+import static com.ssf.workshop13.util.IOUtil.createDir;
 
 @SpringBootApplication
 public class Workshop13Application {
 
+    private static final Logger logger = LoggerFactory.getLogger(Workshop13Application.class);
+
     public static void main(String[] args) {
-//        SpringApplication.run(Workshop13Application.class, args);
-
-        // init the spring app
         SpringApplication app = new SpringApplication(Workshop13Application.class);
-        // decode the java app args using spring args helper
-        ApplicationArguments appArgs = new DefaultApplicationArguments(args);
+        ApplicationArguments cliOpts = new DefaultApplicationArguments(args);
+        logger.info("Path > " + cliOpts.getOptionValues("dataDir").get(0));
 
-        // check args contains "dataDir"
-        // if no, print Error message
-        // if yes, check if directory exist
-        if (!appArgs.containsOption("dataDir")) {
-            System.out.println("Error");
+        if (cliOpts.containsOption("dataDir")) {
+            String path = cliOpts.getOptionValues("dataDir").get(0);
+            logger.info("Path is " + path);
+            createDir(path);
         } else {
-            String path = args[1];
-            File dir = new File(path);
-            boolean res = dir.mkdir();
-            System.out.println("Path is " + path);
-            if (res){
-                System.out.println(path + " is created");
-            } else {
-                System.out.println(path + " already exists");
-            }
+            logger.warn("No data directory is provided!");
+            System.exit(1);
         }
-
         app.run(args);
     }
 }
