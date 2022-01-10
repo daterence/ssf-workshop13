@@ -42,6 +42,4 @@ public class ContactController {
         ct.saveContact(contact, model, applicationArguments);
         return "showContact";
     }
-
-
 }
